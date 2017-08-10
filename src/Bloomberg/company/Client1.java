@@ -8,12 +8,10 @@ import java.util.Scanner;
 
 public class Client1
 {
-    //private ServerSocket serverSocket;
-    //remember to guard against race conditions
+    private int ClientPort;
     public Client1(int port) throws IOException
     {
-        //serverSocket = new ServerSocket(port);
-        //serverSocket.setSoTimeout(10000);
+        ClientPort=port;
     }
 
     public void RunClient()
@@ -22,7 +20,7 @@ public class Client1
         {
             int clientNumberOne, clientNumberTwo, serverNumber;
             Scanner clientScanner = new Scanner(System.in);
-            Socket clientSocket = new Socket("127.0.0.1", 1342);
+            Socket clientSocket = new Socket("127.0.0.1", ClientPort);
             System.out.println("Enter first integer");
             clientNumberOne = clientScanner.nextInt();
             System.out.println("Enter second integer");
@@ -48,14 +46,13 @@ public class Client1
 
     public static void main(String args[]) throws UnknownHostException,IOException
     {
-        int ClientPort = 1342;
-        int FunctionServerPort = 1343;
+        Integer ClientPort = 1342;
 
         new Thread(() ->
         {
             try
             {
-                ClientFacingServer.main(args);
+                ClientFacingServer.main(null);
             }
             catch (IOException e)
             {
@@ -63,9 +60,7 @@ public class Client1
             }
         }).start();
 
-        //Thread.sleep(100);
-
-       Client1 client1 =new Client1(1342);
+       Client1 client1 =new Client1(ClientPort);
        for(int i=0;i<5;i++)
            client1.RunClient();
     }

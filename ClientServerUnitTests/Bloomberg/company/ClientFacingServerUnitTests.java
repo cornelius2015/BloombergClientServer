@@ -11,37 +11,16 @@ import java.util.concurrent.CountDownLatch;
 
 public class ClientFacingServerUnitTests extends TestCase
 {
-    private int clientTwoFirstInt=6;
-    private int clientTwoSecondInt=7;
-
     public void setUp() throws Exception {
 
         super.setUp();
         String args[] = null;
-        //new Thread.Thread(System.out.println(1)).start();
-        //new Thread(() ->
-        //{
+
         try {
             ClientFacingServer.main(args);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //}).start();
-
-        //Thread.sleep(100);
-        //FunctionServer.main(args);
-            /*new Thread(() ->
-            {
-                try
-                {
-                    FunctionServer.main(args);
-                }
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-            }).start();*/
-        //Thread.sleep(100);
     }
 
     public void tearDown() throws Exception

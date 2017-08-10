@@ -13,7 +13,6 @@ public class ServerThread implements Runnable
     {
         FunctionServerPort=functionServerPort;
         server=serv;
-        //(new Thread(this)).start();
     }
 
     public void run()
